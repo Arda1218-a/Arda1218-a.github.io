@@ -1,0 +1,339 @@
+/* ==========================================================================
+   KEYNOTE & HYPNOTIC STORYTELLING STYLESHEET
+   Style: Patrick Jane / The Mentalist - Cinematic, High Psychological Impact
+   ========================================================================== */
+
+:root {
+  --k-bg: #05070b;
+  --k-card: #0c1017;
+  --k-card-hover: #121824;
+  --k-border: #1a2232;
+  --k-border-focus: #38bdf8;
+  
+  --k-text: #f1f5f9;
+  --k-text-muted: #94a3b8;
+  --k-text-dim: #64748b;
+  
+  --k-gold: #f59e0b;
+  --k-crimson: #a31f34;
+  --k-cyan: #38bdf8;
+  --k-emerald: #10b981;
+  --k-rose: #f43f5e;
+
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-serif: 'Newsreader', Georgia, serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--k-bg);
+  color: var(--k-text);
+  font-family: var(--font-sans);
+  line-height: 1.7;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top Navigation Bar */
+.k-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2.5rem;
+  background: rgba(12, 16, 23, 0.9);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--k-border);
+  z-index: 100;
+}
+
+.k-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.k-badge {
+  background: linear-gradient(135deg, var(--k-crimson), #e11d48);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+  letter-spacing: 0.08em;
+}
+
+.k-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.k-slide-indicator {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--k-cyan);
+  font-weight: 700;
+}
+
+/* Layout: Stage + Teleprompter / Speaker Notes */
+.k-stage-container {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Left Side: Visual Experience Stage */
+.k-visual-stage {
+  padding: 3rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid var(--k-border);
+  overflow-y: auto;
+  position: relative;
+  background: radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.03) 0%, transparent 50%);
+}
+
+.k-act-tag {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--k-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.k-stage-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+  color: #ffffff;
+}
+
+.k-stage-lead {
+  font-size: 1.15rem;
+  color: var(--k-text-muted);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.k-quote-box {
+  background: var(--k-card);
+  border-left: 4px solid var(--k-cyan);
+  padding: 1.5rem 1.75rem;
+  border-radius: 0 12px 12px 0;
+  margin-bottom: 2rem;
+  border-top: 1px solid var(--k-border);
+  border-right: 1px solid var(--k-border);
+  border-bottom: 1px solid var(--k-border);
+}
+
+.k-quote-text {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: #e2e8f0;
+  line-height: 1.75;
+}
+
+.k-quote-author {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--k-gold);
+  margin-top: 0.75rem;
+  font-weight: 600;
+}
+
+.k-metrics-matrix {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: auto;
+}
+
+.k-metric-cell {
+  background: var(--k-card);
+  border: 1px solid var(--k-border);
+  padding: 1.25rem;
+  border-radius: 10px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.k-metric-cell:hover {
+  border-color: var(--k-border-focus);
+  transform: translateY(-2px);
+}
+
+.k-metric-val {
+  font-family: var(--font-mono);
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--k-cyan);
+  margin-bottom: 0.25rem;
+}
+
+.k-metric-sub {
+  font-size: 0.8rem;
+  color: var(--k-text-muted);
+}
+
+/* Right Side: The Mentalist / Speaker Script (Patrick Jane Mode) */
+.k-script-panel {
+  background: #080b11;
+  padding: 3rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.k-script-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--k-border);
+}
+
+.k-script-title {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--k-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.k-script-body {
+  font-size: 1.05rem;
+  color: #cbd5e1;
+  line-height: 1.9;
+  flex: 1;
+}
+
+.k-cue {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--k-gold);
+  background: rgba(245, 158, 11, 0.12);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  margin: 0.35rem 0.15rem;
+}
+
+.k-cue-pause {
+  color: var(--k-rose);
+  background: rgba(244, 63, 94, 0.12);
+  border-color: rgba(244, 63, 94, 0.25);
+}
+
+.k-cue-eye {
+  color: var(--k-cyan);
+  background: rgba(56, 189, 248, 0.12);
+  border-color: rgba(56, 189, 248, 0.25);
+}
+
+.k-script-p {
+  margin-bottom: 1.6rem;
+}
+
+.k-script-p strong {
+  color: #ffffff;
+}
+
+/* Bottom Bar */
+.k-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2.5rem;
+  background: #080b11;
+  border-top: 1px solid var(--k-border);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  font-family: inherit;
+}
+
+.btn-primary {
+  background: var(--k-crimson);
+  color: #fff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: #c92a42;
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--k-text);
+  border: 1px solid var(--k-border);
+}
+
+.btn-outline:hover {
+  background: var(--k-card);
+  border-color: var(--k-text-muted);
+}
+
+.dots-wrapper {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.k-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--k-border);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.k-dot.active {
+  background: var(--k-cyan);
+  width: 30px;
+  border-radius: 9999px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  body { overflow-y: auto; height: auto; }
+  .k-stage-container { grid-template-columns: 1fr; }
+  .k-visual-stage { border-right: none; border-bottom: 1px solid var(--k-border); }
+}

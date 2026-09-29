@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The DeepTech Keynote Engine | Patrick Jane Tarzı Psikolojik Sunum Sistemi</title>
+  <meta name="description" content="Tüm projelerin hem toplu büyük vizyonunu hem de her bir projenin tek tek derinlemesine solo pitch sunumlarını barındıran teatral mühendislik keynote sistemi.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/keynote.css">
+  <style>
+    .deck-select-styled {
+      background: #111827;
+      color: #38bdf8;
+      border: 1px solid #1f2937;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 0.45rem 0.85rem;
+      border-radius: 6px;
+      outline: none;
+      cursor: pointer;
+    }
+    .deck-select-styled:focus {
+      border-color: #38bdf8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <header class="k-navbar">
+    <div class="k-brand">
+      <span class="k-badge">PATRICK JANE METODU</span>
+      <span>The DeepTech Keynote Engine</span>
+    </div>
+
+    <div class="k-nav-right">
+      <!-- Project Selection Menu -->
+      <select id="k-deck-selector" class="deck-select-styled">
+        <option value="macro">🌟 1. Büyük Vizyon (Tüm Projeler - 6 Perde)</option>
+        <option value="dormos">🌟 2. DormOS: Akıllı Yurt (Öne Çıkan Proje - Patrick Jane x Harvey Specter Solo Pitch)</option>
+        <option value="water">💧 3. BiyoKalp: Kalpten İlham Alan Su Geri Kazanımı (Özel Solo Sunum)</option>
+        <option value="parking">🚗 4. SmartPark-Mega: Akıllı Otopark Sistemi (Özel Solo Sunum)</option>
+        <option value="home">🏠 5. Aura Smart Home OS: Modüler Akıllı Ev (Özel Solo Sunum)</option>
+        <option value="medication">💊 6. CareMed-AI: Akıllı İlaç Takip Sistemi (Özel Solo Sunum)</option>
+      </select>
+
+      <span id="k-slide-counter" class="k-slide-indicator">1 / 6</span>
+      <button class="btn btn-outline" onclick="Keynote.toggleFullscreen()">⛶ Tam Ekran (F)</button>
+      <a href="presentation.html" class="btn btn-outline">📽️ Klasik Sunum</a>
+      <a href="index.html" class="btn btn-primary">🏠 Portföy Ana Sayfa</a>
+    </div>
+  </header>
+
+  <!-- Dual View: Stage + Psychological Script -->
+  <main class="k-stage-container">
+    <!-- Left Stage -->
+    <section class="k-visual-stage" id="k-stage-content">
+      <!-- Injected dynamically by JS -->
+    </section>
+
+    <!-- Right Script (The Mentalist Teleprompter) -->
+    <aside class="k-script-panel" id="k-script-content">
+      <!-- Injected dynamically by JS -->
+    </aside>
+  </main>
+
+  <!-- Bottom Bar -->
+  <footer class="k-footer">
+    <button id="k-prev-btn" class="btn btn-outline">← Önceki Bölüm</button>
+    <div id="k-dots-container" class="dots-wrapper"></div>
+    <button id="k-next-btn" class="btn btn-primary">Sonraki Bölüm →</button>
+  </footer>
+
+  <!-- Multi-Deck Data Store -->
+  <script>
+    const ALL_KEYNOTE_DECKS = {
+      // 1. MACRO VISION DECK
+      macro: [
+        {
+          actTag: "GİRİŞ & ZİHİN ÇERÇEVESİ",
+          stageTitle: "Görünmeyen Sürtünmeler: İnsan Davranışını ve Gezegeni Hacklemek",
+          stageLead: "Mühendislik sadece silikon ve kablolardan ibaret değildir. Mühendislik; insan zihninin en kırılgan anlarını anlamak, öfkeyi huzura, israfı ekolojik kurtuluşa dönüştürmektir.",
+          hypnoticQuote: "İnsanlar mantıklarıyla karar verdiklerini sanırlar. Oysa onları yöneten şey, farkında bile olmadıkları mikro-stresler ve tükenen sabırlarıdır.",
+          quoteContext: "Patrick Jane Yaklaşımı — Zihin ve Sistem Analizi",
+          metrics: [
+            { val: "4 Sistem", label: "Derinlemesine Proje" },
+            { val: "%100", label: "İnsan Odaklı Mantık" },
+            { val: "MIT", label: "EECS & Sistem Vizyonu" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Göz teması kur, hafifçe gülümse, sakin bir ses tonuyla başla]</span><br>
+              "Bana bir dakika verin. Şu salondaki herkesin gözlerinin içine bakmak istiyorum.<br>
+              Kendimize dürüst olalım: Gün boyunca ne kadar rasyonel, ne kadar sakin olduğumuzu düşünürüz, değil mi? Sabah uyanırız, planlar yaparız, mantığımızla dünyayı yönettiğimizi sanırız..."
+            </p>
+            <p class="k-script-p">
+              <span class="k-cue k-cue-pause">[Kısa bir duraklama yap, ses tonunu bir kademe düşür]</span><br>
+              "Ama gerçek öyle değil. İnsanoğlu aslında <strong>küçük, görünmeyen sürtünmelerin</strong> esiridir. Bir otoparkta dönüp durduğunuz 20 dakika... 'Acaba bu sabah tansiyon ilacımı içtim mi?' diye içinize düşen o küçük şüphe... Ya da lavabodan akıp giden suyun sesini duyduğunuzda hissettiğiniz o derin suçluluk duygusu..."
+            </p>
+            <p class="k-script-p">
+              "Bugün size sadece devre şemaları göstermeyeceğim. Size, <strong>insan psikolojisinin bu kırılma noktalarını nasıl tespit ettiğimizi</strong> ve sistem mühendisliğiyle bu problemleri nasıl kökünden sildiğimizi anlatacağım. Hazırsanız başlayalım."
+            </p>
+          `
+        },
+        {
+          actTag: "PERDE I: KENTSEL CİNNET & TİCARET",
+          stageTitle: "Bir Gömlek, 45 Dakika Öfke ve Kaybolan Milyon Dolarlar",
+          stageLead: "Otopark aramak sadece vakit kaybı değildir; insan beyninde kortizol patlamasına yol açan, sabrı tüketen ve ticareti felç eden modern bir kent krizidir.",
+          hypnoticQuote: "Otoparkta 40 dakika boş yer arayan bir insanın beyni, av peşinde koşan bir avcı kadar gergindir. O insan mağazaya girdiğinde artık müşteri değil, bir saatli bombadır.",
+          quoteContext: "SmartPark — Nöromarketing & Kentsel Hareketlilik Analizi",
+          metrics: [
+            { val: "30 sn", label: "Hedef Slota Ulaşım" },
+            { val: "+%32", label: "Tüketici Alışveriş İştahı" },
+            { val: "3-Strike", label: "Yaptırım & Kara Liste" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Salona bir soru atar gibi öne doğru bir adım at]</span><br>
+              "Şunu hayal edin: Akşam üstü. Yarın sabah önemli bir sunumunuz var ve gardırobunuzda uygun bir gömlek olmadığını fark ettiniz. Evinize en yakın alışveriş merkezine gidiyorsunuz. Toplamda harcayacağınız zaman 15 dakika: Gireceksiniz, gömleği alacaksınız ve çıkacaksınız."
+            </p>
+            <p class="k-script-p">
+              <span class="k-cue k-cue-pause">[Direksiyon tutma hareketi yap, ses tonunu gerginleştir]</span><br>
+              "Otoparkın -2. katına iniyorsunuz. Önünüzde kırmızı fren lambaları... Bir koridora giriyorsunuz: Dolu. Diğerine dönüyorsunuz: Dolu. Bir araç geri çıkacak gibi oluyor, duruyorsunuz; meğer adam bagajını açıp geri kapatıyormuş. 10 dakika... 20 dakika... 35 dakika.<br>
+              Direksiyonu sıkan elleriniz terlemeye başlıyor. Nabzınız 110'a çıkıyor. Kortizol seviyeniz tavan yapıyor.<br>
+              Sonunda bir yer bulup mağazaya girdiğinizde ne oluyor biliyor musunuz? <strong>Artık o gömleği bile almak istemiyorsunuz.</strong> Sadece oradan kaçmak istiyorsunuz."
+            </p>
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Gülümse ve ekrana dön]</span><br>
+              "İşte SmartPark tam olarak bu insanlık dramını yok ediyor. Girişte plakanız taranır, Dijkstra algoritması saniyeler içinde sizin aracınızın boyutuna ve giriş kapınıza <strong>en yakın boş slotu (Örn: B-12)</strong> tahsis eder. Bariyer açılır, ekranda yeşil yönlendirmeyi görürsünüz ve 30 saniyede park edersiniz."
+            </p>
+          `
+        },
+        {
+          actTag: "PERDE II: EKOLOJİK DİRİLİŞ",
+          stageTitle: "Görünmeyen İhanet: 20 Gram Atık İçin 6 Litre Dağ Suyunu Yok Etmek",
+          stageLead: "Türkiye'nin gölleri kuruyor, barajları tükeniyor. Çünkü biz evlerimizde tertemiz dağ kaynaklarından gelen suyu sifona çekip kanalizasyona yolluyoruz.",
+          hypnoticQuote: "Burdur Gölü kururken, Tuz Gölü'nde yavru flamingolar susuzluktan can verirken; bir evin sifonunda her gün 200 litre içilebilir tatlı suyun yok olması bir mühendislik ayıbıdır.",
+          quoteContext: "BiyoKalp — Döngüsel Su Ekonomisi & Ulusal Restorasyon",
+          metrics: [
+            { val: "%40+", label: "Hane Su Tasarrufu" },
+            { val: "4.5 L/dk", label: "Anlık Geri Kazanım" },
+            { val: "3 Faz", label: "TDS / Turbidity Filtrasyon" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-pause">[Çok ciddi ve derin bir ses tonuna geç, sahnenin ortasında dur]</span><br>
+              "Şimdi size canınızı yakacak bir gerçekten bahsedeceğim.<br>
+              Sabah uyandınız, ellerinizi yıkadınız. Musluktan akan su nereden geldi biliyor musunuz? Yüzlerce kilometre ötedeki bir barajdan, dağların zirvesindeki tertemiz kaynaklardan. Siz elinizi 10 saniye sabunladınız... Ve o su lavabo deliğinden kaybolup gitti."
+            </p>
+            <p class="k-script-p">
+              "İki dakika sonra tuvalete gittiniz ve sifonun düğmesine bastınız. <strong>Tam 6 litre tertemiz içme suyu</strong>, 20 gramlık atığı taşımak için kanalizasyona döküldü.<br>
+              BiyoKalp ile bu suyu kapalı döngüde arıtıp rezervuara ve sulamaya geri veriyoruz. Türkiye'de 1 milyon hanede bu sistem kurulduğunda kuruyan Burdur ve Eğirdir göllerimiz yeniden nefes alacak."
+            </p>
+          `
+        },
+        {
+          actTag: "PERDE III: GÜVENLİK VE DAYANIKLILIK",
+          stageTitle: "Bulut İllüzyonu: İnternet Çöktüğünde Eviniz Sizi Koruyabilir mi?",
+          stageLead: "Merkezi akıllı evler internet kesildiğinde işe yaramaz birer plastik yığınına dönüşür. Geliştirdiğimiz ESP-NOW mesh mimarisi, afet anında bile can kurtaran yerel bir otonom refleks sunar.",
+          hypnoticQuote: "Gerçek zeka, sunuculara bağımlı olan değil; fırtınada kablolar kopsa dahi bir tehlikeyi 8 milisaniyede algılayıp gaz vanasını kapatabilendir.",
+          quoteContext: "Modüler Akıllı Ev — Dağıtık Düğüm Mimarisi",
+          metrics: [
+            { val: "8.2 ms", label: "Düğümler Arası Refleks" },
+            { val: "%99.98", label: "Yerel Ağ Uptime" },
+            { val: "32 Düğüm", label: "Mesh Kapasitesi" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Hafif alaycı ama düşündürücü bir ton takın]</span><br>
+              "Bize yıllardır ne anlattılar? 'Telefonunuzdan lambayı açın, ne kadar havalı değil mi?'<br>
+              Peki ya o telefon çekmediğinde? Ya şiddetli bir depremde baz istasyonları çöktüğünde? Mutfakta gaz kaçağı çıksa merkezi sistem hiçbir şey yapamaz."
+            </p>
+            <p class="k-script-p">
+              "Bizim geliştirdiğimiz Modüler Akıllı Ev ise <strong>ESP-NOW omurilik refleksi</strong> ile 8.2 milisaniyede mutfaktaki gazı algılar, internete sormadan elektriği keser ve aileyi korur. Buluta bağlandığında ise <strong>NVIDIA Build (build.nvidia.com) API</strong> evin tüm enerji paternlerini optimize eden bir süper-beyin gibi çalışır."
+            </p>
+          `
+        },
+        {
+          actTag: "PERDE IV: DORMOS & ASKERİ KAMPÜS ZEKASI",
+          stageTitle: "DormOS: Kamerasız Mahremiyet, 85ms Mesh ve NVIDIA Bulut Analitiği",
+          stageLead: "Yurt odasında kamera olmadan TinyML ile tehlikeyi dinlemek, fiber kopsa da 85 ms telsiz mesh ağıyla çalışmak ve NVIDIA Build API ile kampüs olaylarını otonom yönetmek.",
+          hypnoticQuote: "Bir annenin yurt kapısındaki korkusunu dindirmek ve yatırımcıya 1.95 yılda parasını geri ödeyen bir teknoloji kalesi inşa etmek.",
+          quoteContext: "DormOS — Patrick Jane x Harvey Specter Hibrit Sistemi",
+          metrics: [
+            { val: "85 ms", label: "Radyo Mesh Hızı" },
+            { val: "1.95 Yıl", label: "Sermaye Amortisi" },
+            { val: "NVIDIA Build", label: "Kampüs AI Beyni" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Harvey Specter sertliği ve Patrick Jane zarafetiyle]</span><br>
+              "50 odalı bir üniversite yurdu düşünün. Öğrenci odasına kamera koyamazsınız; mahremiyet esastır. Bu yüzden TinyML ile cam kırılması ve çığlığı dinliyoruz. Kablolar kopsa dahi 85 milisaniyede telsiz ağına geçiyoruz.<br>
+              Ve yönetim lobisinde ne çalışıyor biliyor musunuz? <strong>NVIDIA Build API</strong>. Yurdun tüm enerji ve güvenlik telemetrisini analiz eden, 1.95 yılda 1.1 milyon TL tasarruf üreten kurumsal bir yapay zeka omurgası."
+            </p>
+          `
+        },
+        {
+          actTag: "PERDE V: İNSAN ONURU & HAYAT KURTARMA",
+          stageTitle: "Hafızanın Kırılganlığı: 'Bu Sabah İlacımı İçtim mi, Yoksa Dün müydü?'",
+          stageLead: "Dünya genelinde kronik hastaların yarısı ilaçlarını yanlış zamanda alıyor veya unutuyor. Donanım kilitli akıllı dağıtıcı, insan hatasını mekanik kesinlikle sıfırlar.",
+          hypnoticQuote: "Bir annenin 'Ben ilacımı içmiş miydim?' korkusunu dindirmek ve 500 kilometre uzaktaki evladına 'Merak etme, ilacını tam vaktinde aldı' huzurunu vermek...",
+          quoteContext: "Akıllı İlaç Takip — Biyomedikal IoT ve Uyum Güvencesi",
+          metrics: [
+            { val: "%0.00", label: "Dozaj Hata Payı" },
+            { val: "<2.5 sn", label: "Acil Bildirim Hızı" },
+            { val: "Sıfır Bulut", label: "Hayati Donanım Kilidi" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-pause">[En duygusal tonuna geç]</span><br>
+              "75 yaşında bir anne sabah duraksıyor: <em>'Ben tansiyon hapımı içtim mi?'</em><br>
+              İçerse çift doz zehirlenmesi, içmezse beyin kanaması.<br>
+              Akıllı İlaç Dağıtıcımız step motor mekanik kilidiyle vakti gelmeyen hazneleri kilitli tutar, asla çift doza izin vermez ve 15 dakikada onaylanmayan dozda refakatçiye acil bildirim gönderir. <strong>Ve burada kasıtlı olarak NVIDIA Build veya bulut API kullanmadık; çünkü hayat-kritik dozajda sıfır gecikme ve %100 yerel donanım güvenliği esastır!</strong>"
+            </p>
+          `
+        },
+        {
+          actTag: "SONUÇ & NVIDIA MİMARİSİ",
+          stageTitle: "Uçtan Buluta Hibrit Zeka: Microcontrollers + NVIDIA Build API",
+          stageLead: "MIT'nin 'Mens et Manus' felsefesi. 4 büyük projemizde (Su, Otopark, Akıllı Ev, Yurt) NVIDIA Build (build.nvidia.com) GPU yapay zeka hızlandırması ile donanımın sınırlarını kaldırdık.",
+          hypnoticQuote: "Gereken yerde yerel donanım refleksi, gereken yerde NVIDIA GPU bulut zekası. İşte dünya standartlarında sistem mimarisi budur.",
+          quoteContext: "MIT Vizyonu & NVIDIA Accelerated Continuum",
+          metrics: [
+            { val: "4 Proje", label: "NVIDIA Build Entegre" },
+            { val: "1 Proje", label: "Kritik Yerel Kilit" },
+            { val: "MIT", label: "EECS Sistem Seviyesi" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Salonu tamamen tara, kendinden emin ve kararlı bir duruş]</span><br>
+              "Değerli jüri... Portföyümüzün arkasındaki stratejik mimari karara dikkatinizi çekmek istiyorum:<br>
+              Su arıtma, otopark yönlendirme, akıllı ev ve yurt otomasyonu gibi 4 büyük projemize <strong>NVIDIA Build (build.nvidia.com) API anahtarlarını</strong> entegre ettik. Neden? Çünkü kimyasal tahmin, kentsel trafik ve kampüs olay analitiği yüksek GPU akıl yürütmesi gerektirir.<br>
+              Ama ilaç projesinde internet kesilirse bir insanın hayatı riske girmesin diye kasıtlı olarak sıfır bulut bıraktık.<br>
+              İşte bu; sadece kod yazmak değil, <strong>Sistem Düşüncesi ve Mimari Liderliktir</strong>. Teşekkür ederim."
+            </p>
+          `
+        }
+      ],
+
+      // 2. WATER SOLO DEEP-DIVE DECK
+      water: [
+        {
+          actTag: "SU PROJESİ: GİRİŞ & PROBLEM",
+          stageTitle: "BiyoKalp: 20 Gram Atık İçin 6 Litre Dağ Suyunu Sifona Çekmeyi Durdurun",
+          stageLead: "Dünya ve Türkiye şiddetli bir su krizi yaşıyor. Evlerimizde temiz suyun %40'ı sifonlarda ve bahçe sulamasında israf edilirken göllerimiz kuruyor.",
+          hypnoticQuote: "Her sabah dişinizi fırçalarken lavabodan akıp giden su bir atık değildir; doğru yönlendirilirse göllerimizi kurtaracak bir yaşam kaynağıdır.",
+          quoteContext: "BiyoKalp Solo Pitch — Kriz Analizi",
+          metrics: [
+            { val: "%40+", label: "Hane Su Tasarrufu" },
+            { val: "6 Litre", label: "Her Sifonda Kurtarılan Su" },
+            { val: "3 Kademeli", label: "Selenoid Yönlendirme" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Göz teması kur, çok sakin başla]</span><br>
+              "Bugün size anlatacağım proje, hepimizin her gün onlarca kez yaptığı ama hiç düşünmediği bir eylemle ilgili: Musluğu açmak ve sifona basmak.<br>
+              Bir hanede tüketilen temiz içme suyunun neredeyse yarısı tuvalet sifonlarına ve peyzaj sulamasına dökülüyor."
+            </p>
+          `
+        },
+        {
+          actTag: "SU PROJESİ: DONANIM VE SENSÖR FÜZYONU",
+          stageTitle: "TDS, Bulanıklık ve NVIDIA Build API Karar Matrisi",
+          stageLead: "Lavabo ve duştan çıkan su TDS ve Bulanıklık sensörleriyle taranır; buluttaki NVIDIA Build (build.nvidia.com) API kimyasal anomali ve filtre doygunluğunu tahmin eder.",
+          hypnoticQuote: "Sistem sadece anlık voltaj okumaz; NVIDIA Build GPU motoruyla suyun kimyasal bozulma eğrisini mikrosaniyeler içinde modeller.",
+          quoteContext: "BiyoKalp Solo Pitch — Donanım & NVIDIA AI Mimarisi",
+          metrics: [
+            { val: "< 150 ms", label: "Vana Karar Tepkisi" },
+            { val: "NVIDIA Build", label: "Kimyasal AI Tahmini" },
+            { val: "4 Tank", label: "Kademeli Sıvı Mimarisi" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Devre şemasına işaret et]</span><br>
+              "Sistem mimarimiz ESP32 tabanlıdır. Su sisteme girdiği an analog TDS ve optik Bulanıklık sensörlerimiz suyun kirlilik parmak izini çıkarır.<br>
+              Burada en büyük sıçramamız: <strong>NVIDIA Build (build.nvidia.com) API entegrasyonu</strong>. Sensör verisi doğrudan NVIDIA GPU bulutuna akar; sistem filtrenin ne zaman tıkanacağını ve suyun kimyasal bileşimini anlık olarak tahmin eder.<br>
+              Aşırı deterjan veya kimyasal varsa bypass vanasıyla kanalizasyona atılır; güvenli gri su ise filtrelenerek rezervuarlara geri kazandırılır."
+            </p>
+          `
+        },
+        {
+          actTag: "SU PROJESİ: HANE EKONOMİSİ & ROI",
+          stageTitle: "Aylık Su Faturasında %40 Doğrudan İndirim",
+          stageLead: "Bir hanenin 4 kişilik standart su faturası yılda ortalama 12.000 TL tasarruf sağlar. Sistemin kendini amorti etme süresi 8 aydır.",
+          hypnoticQuote: "Çevre dostu bir proje ancak hane halkının cüzdanına doğrudan dokunduğunda kitlesel bir harekete dönüşür.",
+          quoteContext: "BiyoKalp Solo Pitch — Finansal Geri Dönüş",
+          metrics: [
+            { val: "8 Ay", label: "Yatırım Amorti Süresi" },
+            { val: "4.5 L/dk", label: "Arıtma Debisi" },
+            { val: "12.000 ₺", label: "Yıllık Ortalama Tasarruf" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Gülümse ve rakamlara vurgu yap]</span><br>
+              "Kimse sadece 'çevre kirlenmesin' diye binlerce lira harcamak istemez. BiyoKalp bu yüzden tasarlandı: Bir ailenin aylık su faturasını %40 düşürüyor. Yatırım maliyetini 8 ayda çıkarıyor. Sonrasında ise her sifon bedava çalışıyor."
+            </p>
+          `
+        },
+        {
+          actTag: "SU PROJESİ: ULUSAL EKOLOJİK RESTORASYON",
+          stageTitle: "Burdur, Eğirdir ve Tuz Gölü'nü Yeniden Canlandırmak",
+          stageLead: "1 milyon konutta BiyoKalp kullanımı, Türkiye'nin yıllık 150 milyon metreküp tatlı su rezervini barajlarda tutması demektir.",
+          hypnoticQuote: "Şehirler nehirleri ve yeraltı sularını emmeyi bıraktığında, kuruyan göllerimiz kendi doğal döngüsüne yeniden kavuşacaktır.",
+          quoteContext: "BiyoKalp Solo Pitch — Ekolojik Etki",
+          metrics: [
+            { val: "150M m³", label: "Yıllık Kurtarılan Rezerv" },
+            { val: "4 Büyük Göl", label: "Havza İyileşme Hedefi" },
+            { val: "%100", label: "Döngüsel Ekonomi" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-pause">[Derin ve etkileyici bir ton]</span><br>
+              "Burdur Gölü neden kurudu? Eğirdir neden can çekişiyor? Çünkü şehirlerin içme suyu ihtiyacı yeraltı sularını kurutuyor.<br>
+              BiyoKalp ile kapalı döngüye geçtiğimizde göllerimiz yeniden nefes alacak."
+            </p>
+          `
+        },
+        {
+          actTag: "SU PROJESİ: JÜRİ SAVUNMASI & PATENT",
+          stageTitle: "3 Kademeli Vana Karar Mantığı & Patent Başvurusu",
+          stageLead: "TÜRKPATENT İncelemeli Patent başvurumuz, sensör füzyonu ile otomatik rezervuar ve sulama yönlendirme metodolojisini koruma altına alır.",
+          hypnoticQuote: "Biz sıradan bir su filtresi yapmadık; suyun kalitesini ölçüp nereye gideceğine karar veren yapay zeka destekli bir sıvı orkestrası kurduk.",
+          quoteContext: "BiyoKalp Solo Pitch — Fikri Mülkiyet & Kapanış",
+          metrics: [
+            { val: "Patent", label: "TÜRKPATENT Koruması" },
+            { val: "Wokwi", label: "Çalışan Canlı Simülasyon" },
+            { val: "MIT", label: "Sustainability Focus" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Kendinden emin bir selam ver]</span><br>
+              "Projemiz canlı Wokwi simülasyonunda tescillenmiş, patent tarifnamesi hazırlanmış çalışan bir prototiptir. Teşekkür ederim."
+            </p>
+          `
+        }
+      ],
+
+      // 3. PARKING SOLO DEEP-DIVE DECK
+      parking: [
+        {
+          actTag: "OTOPARK PROJESİ: GİRİŞ & PSİKOLOJİ",
+          stageTitle: "SmartPark: 45 Dakikalık Otopark Eziyetini 30 Saniyede Bitirmek",
+          stageLead: "Şehir içi trafiğin %30'u ve AVM müşteri öfkesinin %80'i park yeri arama sürecinden kaynaklanır.",
+          hypnoticQuote: "Otopark bir bina girişinin ön bahçesidir. Ön bahçesi kaos olan bir eve kimse misafir olmak istemez.",
+          quoteContext: "SmartPark Solo Pitch — Kentsel Hız",
+          metrics: [
+            { val: "-%70", label: "Park Arama Süresi" },
+            { val: "+%30", label: "AVM Mağaza Cirosu" },
+            { val: "30 sn", label: "Girişten Parka Süre" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Göz teması kur, hafifçe gülümse]</span><br>
+              "Değerli jüri... Hiç sadece 2 parça kıyafet almak için gidip otoparkta 40 dakika boş yer aradığınız ve sonunda öfkeyle AVM'yi terk ettiğiniz oldu mu?<br>
+              SmartPark işte bu kentsel cinneti ortadan kaldırmak için doğdu."
+            </p>
+          `
+        },
+        {
+          actTag: "OTOPARK PROJESİ: ALGORİTMİK ZEKA",
+          stageTitle: "Dijkstra Tabanlı Minimum Mesafe & NVIDIA Build Yoğunluk Tahmini",
+          stageLead: "Araç giriş kapısına yaklaştığı an plaka okunur; Dijkstra en kısa yolu çizerken, NVIDIA Build (build.nvidia.com) API katlardaki araç akışını ve pik saat tıkanıklıklarını tahmin eder.",
+          hypnoticQuote: "Dijkstra anlık mesafeyi bulur; NVIDIA Build ise yarım saat sonra hangi koridorun kilitleneceğini önceden görerek trafiği dağıtır.",
+          quoteContext: "SmartPark Solo Pitch — Dijkstra + NVIDIA AI",
+          metrics: [
+            { val: "ISO 23374", label: "Otonom Valet Uyumu" },
+            { val: "NVIDIA Build", label: "Trafik Akıl Yürütme" },
+            { val: "< 0.8 sn", label: "Bariyer Açılma Süresi" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Ekrana dön, heyecanlı ve net bir ton]</span><br>
+              "Girişteki ultrasonik ve RFID bariyer motorumuz sadece basit bir sensör değildir. Sisteme bağladığımız <strong>NVIDIA Build (build.nvidia.com) API</strong>, AVM'nin ve otoparkın geçmiş yoğunluk haritalarını GPU gücüyle işler.<br>
+              Dijkstra ile en yakın boş slot tahsis edilirken, NVIDIA AI 2 saat sonrasının yoğunluğunu öngörerek araçları katlara dengeli dağıtır. Giriş bariyeri 0.8 saniyede açılır, araç doğrudan yerine akar."
+            </p>
+          `
+        },
+        {
+          actTag: "OTOPARK PROJESİ: GÜVENLİK & YAPTIRIM",
+          stageTitle: "3-Strike İhlal Motoru: 'Benim Yerime Kimse Park Edemez'",
+          stageLead: "Tahsis edilmemiş bir slota haksız yere park eden araç sensörle algılanır; 3. ihlalde otoparktan süresiz men edilir.",
+          hypnoticQuote: "Adaletin olmadığı bir otoparkta algoritma çalışmaz. 3-Strike motorumuz her sürücünün hakkını korur.",
+          quoteContext: "SmartPark Solo Pitch — Güvenlik",
+          metrics: [
+            { val: "3-Strike", label: "İhlal Takip Sistemi" },
+            { val: "Ed25519", label: "Kriptolu QR Bilet" },
+            { val: "Sıfır", label: "Yer Gaspı İhtimali" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Kararlı bir ton]</span><br>
+              "Peki birisi gelip sizin yerinize mi park etti? SmartPark'ın 3-Strike ihlal motoru anında devreye girer. Yanlış park eden araca ceza yazar ve 3. ihlalde sistem o plakayı kara listeye alır."
+            </p>
+          `
+        },
+        {
+          actTag: "OTOPARK PROJESİ: ÖLÇEKLENEBİLİRLİK",
+          stageTitle: "AVM'ler, 50 Bin Kişilik Stadyumlar ve Şehir Hastaneleri",
+          stageLead: "Maç bitişlerinde yaşanan 2 saatlik stadyum çıkış krizlerini ve acil servis önlerindeki park kilitlenmelerini sıfırlar.",
+          hypnoticQuote: "SmartPark sadece bir otopark yazılımı değil; akıllı şehirlerin kan dolaşımını hızlandıran bir damar cerrahıdır.",
+          quoteContext: "SmartPark Solo Pitch — Geniş Kapsam",
+          metrics: [
+            { val: "Stadyumlar", label: "Hızlı Boşalma Modu" },
+            { val: "Hastaneler", label: "Acil Öncelikli Slot" },
+            { val: "1.2 kg CO₂", label: "Araç Başı Karbon Tasarrufu" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Salonu tamamen tara]</span><br>
+              "Bu sistem sadece AVM'ler için değildir. Yeni yapılan modern stadyumlarda maç sonu kaosunu bitirir, şehir hastanelerinde ambulans ve hasta girişlerini kesintisiz kılar."
+            </p>
+          `
+        },
+        {
+          actTag: "OTOPARK PROJESİ: SONUÇ",
+          stageTitle: "Ticari Kazanç, Mutlu İnsanlar ve Sıfır Karbon İsrafı",
+          stageLead: "SmartPark; insan sabrını korur, AVM gelirlerini artırır ve gereksiz egzoz salınımını ortadan kaldırır.",
+          hypnoticQuote: "Geleceğin şehirlerinde park yeri aranmaz; park yeri sizi karşılar.",
+          quoteContext: "SmartPark Solo Pitch — Kapanış",
+          metrics: [
+            { val: "MIT EECS", label: "Mobilite Vizyonu" },
+            { val: "Canlı Demo", label: "Web Harita Simülatörü" },
+            { val: "Tescilli", label: "Patent Mimarisi" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Selam ver]</span><br>
+              "SmartPark ile şehirlerimizi daha akıllı, insanları daha mutlu hale getiriyoruz. Teşekkür ederim."
+            </p>
+          `
+        }
+      ],
+
+      // 4. SMART HOME SOLO DEEP-DIVE DECK
+      home: [
+        {
+          actTag: "AKILLI EV: GİRİŞ & TEHLİKE",
+          stageTitle: "Bulut İllüzyonu: İnternet Koptuğunda Eviniz Sizi Koruyabilir mi?",
+          stageLead: "Klasik akıllı evler merkezi sunuculara bağımlıdır. Bir fırtınada veya depremde internet kesildiğinde tamamen işlevsiz kalırlar.",
+          hypnoticQuote: "Evinizin can güvenliği, binlerce kilometre uzaktaki bir bulut sunucusunun internet kablosuna emanet edilemez.",
+          quoteContext: "Modüler Akıllı Ev — Tehlike Analizi",
+          metrics: [
+            { val: "ESP-NOW", label: "Yerel Radyo Mesh" },
+            { val: "8.2 ms", label: "Omurilik Refleksi" },
+            { val: "%99.98", label: "Arıza Toleransı" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Ciddi bir ses tonu]</span><br>
+              "Piyasadaki akıllı ev sistemlerinin en büyük yalanı şudur: 'Her şey bulutta.'<br>
+              Peki ya internet çöktüğünde? Mutfakta gaz sızıntısı olduğunda sistem ana sunucuya ulaşamazsa ne olacak?"
+            </p>
+          `
+        },
+        {
+          actTag: "AKILLI EV: MESH MİMARİSİ",
+          stageTitle: "Merkezsiz Dağıtık Düğümler (Decentralized Mesh)",
+          stageLead: "Her oda (Salon, Mutfak, Yatak Odası) kendi mikrodenetleyicisine sahiptir ve ESP-NOW ile doğrudan birbirleriyle haberleşir.",
+          hypnoticQuote: "Tek bir beyni olan sistem ölür; her organı düşünebilen sistem asla çökmez.",
+          quoteContext: "Modüler Akıllı Ev — Dağıtık Düğüm Mimarisi",
+          metrics: [
+            { val: "32 Düğüm", label: "Ölçeklenebilirlik" },
+            { val: "Self-Healing", label: "Kendi Kendini Onarma" },
+            { val: "< 50 ms", label: "Acil Güç Kesimi" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Ekrana işaret et]</span><br>
+              "Geliştirdiğimiz modüler ekosistemde mutfak düğümü gaz algıladığı an, internet olmasa dahi 8.2 milisaniyede ana sigortaya sinyal gönderir ve elektriği keser."
+            </p>
+          `
+        },
+        {
+          actTag: "AKILLI EV: ENERJİ & NVIDIA BUILD COPILOT",
+          stageTitle: "NVIDIA Build API ile Doğal Dil Senaryoları & %24 Güç Tasarrufu",
+          stageLead: "Kullanılmayan odalardaki bekleme güçlerini ACS712 sensörleriyle izler; NVIDIA Build (build.nvidia.com) API aile alışkanlıklarını öğrenerek dinamik enerji rejimini yönetir.",
+          hypnoticQuote: "Gerçek akıllı ev, sadece bir düğmeyi kapatan değil; NVIDIA yapay zekasıyla evin enerji haritasını saniye saniye dengeleyendir.",
+          quoteContext: "Modüler Akıllı Ev — NVIDIA AI Enerji Yönetimi",
+          metrics: [
+            { val: "%24", label: "Boşta Güç Tasarrufu" },
+            { val: "NVIDIA Build", label: "LLM Enerji Copilot" },
+            { val: "SSR", label: "Katı Hal Röleleri" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Gülümse ve elini kalbine koy]</span><br>
+              "Evlerimizde harcanan elektriğin dörtte biri cihazların bekleme modunda tükettiği 'vampir enerjidir'.<br>
+              Biz bu sistemi <strong>NVIDIA Build (build.nvidia.com) API</strong> ile buluta bağladık. Sistem evin içinde yaşayan insanların uyku ve çalışma saatlerini GPU zekasıyla analiz eder; siz konuşurken 'Film izliyorum' dediğiniz an NVIDIA modeli salonu loşlaştırır, boş odaların prizlerini keser ve faturayı %24 düşürür."
+            </p>
+          `
+        },
+        {
+          actTag: "AKILLI EV: AFET GÜVENLİĞİ",
+          stageTitle: "Deprem ve Yangın Anında Otomatik Can Kurtarma Senaryosu",
+          stageLead: "Sarsıntı veya duman algılandığında kilitli kapıları açar, gazı keser ve çıkış yollarını LED'lerle aydınlatır.",
+          hypnoticQuote: "Panik anında insan hata yapar; modüler donanım asla tereddüt etmez.",
+          quoteContext: "Modüler Akıllı Ev — Afet Senaryosu",
+          metrics: [
+            { val: "Otomatik", label: "Kapı Kilidi Açma" },
+            { val: "MQ-2", label: "Duman & Gaz Sensörü" },
+            { val: "Acil Tahliye", label: "Aydınlatma Rehberi" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-pause">[Derin ve etkileyici ton]</span><br>
+              "Deprem anında kapılar kilitli kalmaz; duman çıktığında elektrik arkı oluşmaz. Sistem aileyi güvenle dışarı çıkaracak acil tahliye moduna geçer."
+            </p>
+          `
+        },
+        {
+          actTag: "AKILLI EV: SONUÇ",
+          stageTitle: "Geleceğin Kendi Kendine Yeten Dayanıklı Evleri",
+          stageLead: "İnternet kopsa dahi yaşayan, koruyan ve tasarruf eden modüler IoT mimarisi.",
+          hypnoticQuote: "Akıllı olmak gösterişli olmak değil; en zor günde kusursuz çalışabilmektir.",
+          quoteContext: "Modüler Akıllı Ev — Kapanış",
+          metrics: [
+            { val: "MIT IoT", label: "Gömülü Sistem Vizyonu" },
+            { val: "ESP32", label: "Düşük Maliyet & Güç" },
+            { val: "Faydalı Model", label: "Tescil Mimarisi" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Selam ver]</span><br>
+              "Modüler Akıllı Ev ekosistemiyle evlerimizi gerçek anlamda güvenli kılıyoruz. Teşekkür ederim."
+            </p>
+          `
+        }
+      ],
+
+      // 5. MEDICATION SOLO DEEP-DIVE DECK
+      medication: [
+        {
+          actTag: "İLAÇ PROJESİ: GİRİŞ & İNSAN DRAMI",
+          stageTitle: "Hafızanın Kırılganlığı: 'Ben Bu Sabah İlacımı İçtim mi?'",
+          stageLead: "Kronik hastaların %50'si ilaç uyumsuzluğu yaşamakta; çift doz zehirlenmesi ve unutkanlık yüzünden her yıl milyonlarca insan hayatını kaybetmektedir.",
+          hypnoticQuote: "Bir hapı içmeyi unutmak ile ikinci kez içmek arasındaki ince çizgi, bir ailenin en büyük kabusudur.",
+          quoteContext: "Akıllı İlaç Takip — Problem Tespiti",
+          metrics: [
+            { val: "%50", label: "Küresel İlaç Uyumsuzluğu" },
+            { val: "100 Milyar $", label: "Yıllık Acil Servis Yükü" },
+            { val: "%0.00", label: "Mekanik Kilit Hata Payı" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-pause">[Çok duygusal ve içten başla]</span><br>
+              "Değerli dinleyenler... 75 yaşında yalnız yaşayan bir anne düşünün. Masasında 5 ayrı ilaç kutusu var. Sabah su bardağıyla duraksıyor: 'Ben ilacımı içtim mi?'<br>
+              İçerse çift doz zehirlenmesi, içmezse tansiyon krizi."
+            </p>
+          `
+        },
+        {
+          actTag: "İLAÇ PROJESİ: DONANIM KİLİDİ",
+          stageTitle: "DS3231 Yüksek Hassasiyetli RTC & Step Motor Mekanik Kilidi",
+          stageLead: "Vakti gelmeyen hiçbir ilaç haznesi fiziksel olarak açılamaz. Step motor sadece tam reçete saatinde ilgili bölmeyi hastanın önüne getirir.",
+          hypnoticQuote: "İnsan hafızası yanılabilir ama mikrodenetleyici saati ve step motor kilidi asla şaşmaz.",
+          quoteContext: "Akıllı İlaç Takip — Donanım Koruması",
+          metrics: [
+            { val: "DS3231", label: "Hassas RTC Modülü" },
+            { val: "28BYJ-48", label: "Hassas Step Motor" },
+            { val: "4 Hazne", label: "Döner Güvenlik Tamburu" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Ekrana dön]</span><br>
+              "Geliştirdiğimiz kutu, RTC zamanlayıcısı sayesinde saati gelmeyen hazneleri mekanik olarak kilitli tutar. Hasta istese de yanlış ilacı alamaz."
+            </p>
+          `
+        },
+        {
+          actTag: "İLAÇ PROJESİ: ACİL ESKALASYON",
+          stageTitle: "15 Dakika Kuralı: Refakatçiye ve Doktora Acil SMS Bildirimi",
+          stageLead: "Alarm çaldığında hasta 15 dakika içinde dokunmatik sensöre basarak ilacı aldığını onaylamazsa, 500 km uzaktaki evladına anında acil durum uyarısı gider.",
+          hypnoticQuote: "Huzur, uzakta olsanız bile annenizin ilacını tam saatinde aldığını telefonunuzdaki yeşil tikten bilmektir.",
+          quoteContext: "Akıllı İlaç Takip — Refakatçi Ağı",
+          metrics: [
+            { val: "< 2.5 sn", label: "SMS / Push Hızı" },
+            { val: "15 Dakika", label: "Eskalasyon Eşiği" },
+            { val: "Pushover/SMS", label: "Entegre API" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Duygusal ve kararlı bir ses]</span><br>
+              "Hasta 15 dakika içinde ilacı alıp dokunmatik sensöre basmazsa, sistem refakatçinin telefonuna anında acil SMS gönderir. Müdahale gecikmez, hayat kurtulur."
+            </p>
+          `
+        },
+        {
+          actTag: "İLAÇ PROJESİ: SAĞLIK ANALİTİĞİ",
+          stageTitle: "Doktor İçin Gerçek Zamanlı Hasta Uyum Grafiği",
+          stageLead: "Hastanın aylık ilaç alma disiplini telemetri sunucusuna kaydedilir; doktora tedaviye uyum skoru (%98.5) sunulur.",
+          hypnoticQuote: "Doğru tedavi ancak ilacın tam vaktinde içildiğinden emin olunduğunda mümkündür.",
+          quoteContext: "Akıllı İlaç Takip — Sağlık Analitiği",
+          metrics: [
+            { val: "%98.5", label: "Uyum Başarı Skoru" },
+            { val: "14+ Gün", label: "Pil Ömrü" },
+            { val: "Cloud", label: "Doktor Telemetri Kaydı" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Gülümse]</span><br>
+              "Doktor reçeteyi yazdığında hastanın gerçekten uyup uymadığını görür. Tedavi başarı oranı katlanır, hastane yatışları %45 azalır."
+            </p>
+          `
+        },
+        {
+          actTag: "İLAÇ PROJESİ: SONUÇ",
+          stageTitle: "İnsan Onurunu ve Yaşamını Koruyan Biyomedikal İnovasyon",
+          stageLead: "Donanım kilitli, refakatçi bağlantılı ve sıfır hata toleranslı akıllı sağlık asistanı.",
+          hypnoticQuote: "Bu sadece bir kutu değildir; bir annenin nefesi, bir evladın iç huzurudur.",
+          quoteContext: "Akıllı İlaç Takip — Kapanış",
+          metrics: [
+            { val: "MIT Health", label: "Biomedical IoT" },
+            { val: "Faydalı Model", label: "Mekanik Tescil" },
+            { val: "Sıfır Hata", label: "Dozaj Güvenliği" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Saygıyla selam ver]</span><br>
+              "Akıllı İlaç Takip Sistemi ile kronik hastalarımıza güvenli bir gelecek sunuyoruz. Dinlediğiniz için teşekkür ederim."
+            </p>
+          `
+        }
+      ],
+
+      // 6. DORMOS SOLO DEEP-DIVE DECK (PATRICK JANE x HARVEY SPECTER HYBRID)
+      dormos: [
+        {
+          actTag: "PERDE I: BİR ANNENİN GÖZLERİ & HARVEY'NİN ANLAŞMASI",
+          stageTitle: "DormOS: 'Ben Şansa Oynamam, İnsana ve Sisteme Oynarım'",
+          stageLead: "Yurt kapısında 18 yaşındaki kızını bırakan annenin gözlerindeki sessiz korkuyu okumak ve yönetim kurulunun önüne 1.95 yıllık su götürmez bir ROI koymak.",
+          hypnoticQuote: "Kaybedenler bahaneler üretir: 'İnternet koptu, kablo yandı.' Kazananlar ise binanın elektriği kesilse dahi 85 milisaniyede acil durum ağını ayağa kaldırır.",
+          quoteContext: "Patrick Jane x Harvey Specter — DormOS Açılış Manifestosu",
+          metrics: [
+            { val: "1.95 Yıl", label: "Amorti Süresi (ROI)" },
+            { val: "85 ms", label: "Thread/Mesh Refleksi" },
+            { val: "46.150 $", label: "50 Oda Kompleks Bütçesi" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Salondaki en kıdemli jüri üyesinin gözlerinin içine dik dik bak, ceketinin önünü ilikle, hafif alaycı ama kusursuz bir tebessümle başla]</span><br>
+              "Şu salondaki herkes bir an arkasına yaslansın. Size iki farklı insan göstereceğim.<br>
+              Birincisi: Eylül ayında üniversite yurdunun kapısında 18 yaşındaki kızını bırakan bir anne. O annenin gözlerine hiç baktınız mı? O bakış ders notlarıyla ilgili değildir. O bakış şudur: <em>'Gece saat 03:00'te bu binada elektrikler kesildiğinde benim çocuğumu kim koruyacak?'</em>"
+            </p>
+            <p class="k-script-p">
+              <span class="k-cue k-cue-pause">[Ses tonunu bir Harvey Specter sertliğine ve kesinliğine geçir]</span><br>
+              "Şimdi ikinci insana bakın: Yurtlar Genel Müdürü ve Yatırım Kurulu Başkanı. O adam ucuz IoT oyuncaklarıyla ilgilenmez. O adam iki şey ister: <strong>Sıfır hukuki sorumluluk ve yatırdığı paranın misliyle geri dönmesi.</strong><br>
+              Ben buraya size basit bir öğrenci uygulaması anlatmaya gelmedim. Ben buraya; 50 odalı bir kampüsü <strong>1.95 yılda kendini amorti eden, kriz tanımaz bir nakit ve güvenlik kalesine</strong> dönüştüren DormOS'u sunmaya geldim."
+            </p>
+          `
+        },
+        {
+          actTag: "PERDE II: MAHREMİYET & 15 SANİYELİK FİLTRE",
+          stageTitle: "Kamerasız Edge AI: Tehlikenin Akustik Geometrisini Dinlemek",
+          stageLead: "Öğrenci odasına kamera koyamazsınız (KVKK ve Mahremiyet). TinyML ses yapay zekamız, cam kırılması ve panik çığlığını ham ses kaydetmeden cihaz üstünde (Edge) tespit eder.",
+          hypnoticQuote: "Öğrencinin odasına kamera koyarsanız 4 dakika içinde üzerine koli bandı yapıştırır. Gerçek zeka; izlemeden duyan, duyunca da sahte alarmı 15 saniyede eleyebilendir.",
+          quoteContext: "DormOS — Edge AI & Mahremiyet Mimarisi",
+          metrics: [
+            { val: "%100", label: "Kamerasız Gizlilik" },
+            { val: "15 sn", label: "İnsani Doğrulama Sayacı" },
+            { val: "%99.0", label: "Sahte Alarm Eleme" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Patrick Jane gibi hafifçe başını yana eğ, hipnotik bir tonla devam et]</span><br>
+              "İnsanlar özel alanlarında izlenmekten nefret ederler. Bir yurt odasına kamera takarsanız, o gençler 5 dakika içinde o kamerayı kapatır.<br>
+              Biz odayı izlemiyoruz. ESP32-S3 üzerinde çalışan <strong>TinyML akustik tensör modelimizle tehlikenin ses frekansını</strong> dinliyoruz: Kırılan bir pencere camı... Ani bir panik çığlığı..."
+            </p>
+            <p class="k-script-p">
+              <span class="k-cue k-cue-pause">[Harvey Specter vurgusuyla parmağını kaldır]</span><br>
+              "Ve iş dünyasında en pahalı şey nedir bilir misiniz? <strong>Gereksiz yere panikleyen güvenlik ekibinin zaman israfı.</strong><br>
+              Öğrenci rüyasında bağırmış olabilir mi? Evet. Bu yüzden 10.1 inçlik PoE duvar tabletine <strong>15 saniyelik insani doğrulama katmanı</strong> koyduk. Öğrenci ekrandaki yeşil butona basıp 'Güvendeyim' derse alarm düşer.<br>
+              Ama eğer 15 saniyede basamazsa? Güvenlik timi kapıyı kırdığında saldırgan ne olduğunu bile anlamamış olur. İşte sıfır hata toleransı budur."
+            </p>
+          `
+        },
+        {
+          actTag: "PERDE III: ÇÖKMEZ ASKERİ AĞ",
+          stageTitle: "85 Milisaniyelik Görünmez Ordu (3-Katmanlı Mesh)",
+          stageLead: "Ana fiber internet kablosu kopsa, yangın merdivenindeki kablolar yansa bile sistem 85 ms içinde odadan odaya sekerek (Node-Hopping) lobiye acil sinyali ulaştırır.",
+          hypnoticQuote: "Amatörler internet koptuğunda 'AWS çöktü' diye ağlar. Profesyoneller telsiz dalgalarıyla 85 milisaniyede kendi ordusunu kurar.",
+          quoteContext: "DormOS — Fail-Safe Mesh Protokolü",
+          metrics: [
+            { val: "85 ms", label: "Thread/ESP-NOW Geçişi" },
+            { val: "Node-Hop", label: "Odadan Odaya Sıçrama" },
+            { val: "%99.98", label: "Bina İçi Uptime" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Masaya doğru eğil, meydan okuyan bir bakış at]</span><br>
+              "Bana piyasadaki herhangi bir akıllı bina projesini getirin. Ana internet kablosunu kesin... Sistem anında çöker, çöp olur.<br>
+              DormOS'ta bahane yoktur. Ana Ethernet kablosu kopsa dahi, sistemimiz <strong>85 milisaniye içinde Thread ve ESP-NOW telsiz dalgası ağına</strong> geçer.<br>
+              3. kattaki 304 numaralı oda, 2. kattaki odaya; o da 1. kata sinyali fırlatır. Kablo yok, internet yok; ama acil durum sinyali lobideki nöbetçinin ekranında yanıp sönüyor. Biz felaket anında hayatta kalan sistemler inşa ederiz."
+            </p>
+          `
+        },
+        {
+          actTag: "PERDE IV: PARANIN DİLİ & NVIDIA BUILD GÜCÜ",
+          stageTitle: "Harvey Specter Bütçe & NVIDIA AI Analizi: Sayılar Yalan Söylemez",
+          stageLead: "50 odalı bir yurtta 46.150 USD bütçe. NVIDIA Build (build.nvidia.com) API kestirimci bakım motoru ile yıllık 1.130.000 TL net tasarruf ve 1.95 yılda sermaye geri dönüşü.",
+          hypnoticQuote: "Bana 50 odalı bir binada hem NVIDIA GPU zekasıyla kestirimci bakım yapan hem de 2 yıldan kısa sürede parasını geri ödeyen başka bir sistem gösterin; size özel dikim Tom Ford takım elbise alayım.",
+          quoteContext: "DormOS — NVIDIA Build API & Finansal Model",
+          metrics: [
+            { val: "1.95 Yıl", label: "Net Geri Dönüş (Payback)" },
+            { val: "NVIDIA Build", label: "Bulut AI Beyni" },
+            { val: "1.13M ₺", label: "Yıllık Net Tasarruf" },
+            { val: "14 Ton", label: "Kurtarılan Plastik Şişe" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Ceketinin kol düğmesini düzelt, karizmatik ve net bir ses tonu]</span><br>
+              "Gelin biraz paradan konuşalım. Çünkü duygular tartışılır ama bilanço tartışılmaz.<br>
+              50 odalı bir yurt binası: Toplam PoE tabletler, Edge AI ses düğümleri, Ters Osmoz arıtma altyapısı ve montaj dahil bütçe: <strong>46.150 Dolar</strong>."
+            </p>
+            <p class="k-script-p">
+              <span class="k-cue k-cue-pause">[Harvey Specter tarzı kendinden emin bir vurgu]</span><br>
+              "Ve bu binanın lobi idaresine ne bağladık biliyor musunuz? <strong>NVIDIA Build (build.nvidia.com) API</strong>.<br>
+              Sensörler arızayı sezdiği an, NVIDIA'nın kurumsal GPU modelleri kestirimci bakım raporunu çıkarıyor. Boru patlamadan 24 saat önce teknik personele iş emri düşüyor.<br>
+              1. Kestirimci bakım ile boru patlakları ve elektrik kaçakları sıfırlanır.<br>
+              2. Merkezi Ters Osmoz ile <strong>yılda 14 ton plastik atığı</strong> ve su masrafı yok edilir.<br>
+              Yıllık net tasarruf: <strong>1 Milyon 130 Bin TL</strong>. Yatırımın amorti süresi: <strong>Tam 1.95 Yıl</strong>.<br>
+              İşte teknoloji dediğin böyle para kazandırır!"
+            </p>
+          `
+        },
+        {
+          actTag: "PERDE V: BÜYÜK KAPANIŞ & HÜKÜM",
+          stageTitle: "Kazananlar Mazeret Üretmez, Standartları Belirler",
+          stageLead: "DormOS; kamerasız insan mahremiyetini gözeten, askeri mesh dayanıklılığında çalışan ve NVIDIA Build GPU analitiği ile kazandıran geleceğin kampüs işletim sistemidir.",
+          hypnoticQuote: "İkincilik bir seçenek değildir. MIT'ye başkalarının yaptıklarını tekrar ederek değil; endüstriyel problemleri tek hamlede mat ederek girersiniz.",
+          quoteContext: "Patrick Jane x Harvey Specter — Büyük Kapanış",
+          metrics: [
+            { val: "MIT Tier-1", label: "Endüstriyel Sistem" },
+            { val: "NVIDIA NIM", label: "Enterprise AI" },
+            { val: "Kusursuz", label: "Fizibilite & Savunma" }
+          ],
+          speechScript: `
+            <p class="k-script-p">
+              <span class="k-cue k-cue-eye">[Sahnenin tam ortasına gel, salondaki herkese tek tek bakarak son noktayı koy]</span><br>
+              "Değerli jüri...<br>
+              Sıradan öğrenciler okul ödevi yapar. Biz ise bir annenin gece korkusunu dindiren, öğrencisine kamerasız mahremiyet sunan, kablolar kopsa bile 85 milisaniyede çalışan, arkasında <strong>NVIDIA Build yapay zeka hızlandırması</strong> olan ve yatırımcısına 2 yılda parasını geri veren endüstriyel bir ekosistem inşa ettik."
+            </p>
+            <p class="k-script-p">
+              <span class="k-cue k-cue-pause">[Harvey Specter gibi gülümse ve hafifçe başını eğerek selam ver]</span><br>
+              "Şimdi karar sizin: Ya eski usul analog binalarla devam edersiniz ya da DormOS ile geleceğin standardını belirlersiniz.<br>
+              Davamızı sunduk. Teşekkür ederim."
+            </p>
+          `
+        }
+      ]
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      Keynote.init(ALL_KEYNOTE_DECKS);
+    });
+  </script>
+  <script src="js/keynote.js"></script>
+</body>
+</html>
+
